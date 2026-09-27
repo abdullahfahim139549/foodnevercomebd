@@ -1,0 +1,512 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="google-site-verification" content="Q-KXkz9ZtKLH1KSiEINXwk3e_OKGfK9scPVfMO-9XxE" />
+<title>Food Never Come Bangladesh</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,wght@0,400;0,600;0,700;0,900;1,500&family=Work+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#FBF6EC; --ink:#17201A; --green:#0B3D2E; --green-light:#1F6F54;
+  --mango:#E8A33D; --chili:#C23616; --card:#FFFFFF; --line:#E4DCC8;
+  --radius:14px;
+}
+*{box-sizing:border-box; margin:0; padding:0;}
+body{
+  background:var(--bg); color:var(--ink); font-family:'Work Sans',sans-serif;
+  line-height:1.5; -webkit-font-smoothing:antialiased;
+}
+h1,h2,h3,.serif{font-family:'Fraunces',serif;}
+img{max-width:100%; display:block;}
+a{color:inherit;}
+button{font-family:inherit; cursor:pointer; border:none;}
+
+/* ---------- NAV ---------- */
+header{
+  position:sticky; top:0; z-index:40; background:rgba(251,246,236,.92);
+  backdrop-filter:blur(8px); border-bottom:1px solid var(--line);
+}
+.nav-wrap{
+  max-width:1180px; margin:0 auto; padding:16px 24px;
+  display:flex; align-items:center; justify-content:space-between; gap:16px;
+}
+.brand{display:flex; align-items:center; gap:10px; font-weight:700; font-size:1.15rem;}
+.brand .mark{
+  width:38px; height:38px; border-radius:11px; background:var(--green);
+  display:flex; align-items:center; justify-content:center; color:var(--mango); flex-shrink:0;
+}
+.brand .mark svg{width:21px; height:21px;}
+.brand small{display:block; font-weight:500; font-size:.68rem; color:var(--green-light); letter-spacing:.02em;}
+nav.links{display:flex; gap:26px; align-items:center;}
+nav.links a{font-weight:500; font-size:.95rem; text-decoration:none; color:var(--ink); opacity:.8;}
+nav.links a:hover{opacity:1;}
+
+/* ---------- HERO ---------- */
+.hero{max-width:720px; margin:0 auto; padding:56px 24px 36px; text-align:center;}
+.eyebrow-note{color:var(--chili); font-weight:600; font-size:.9rem; margin-bottom:14px;}
+.hero h1{
+  font-size:clamp(2.1rem, 6vw, 3.4rem); line-height:1.08; font-weight:700; letter-spacing:-.01em;
+}
+.rotator{color:var(--green); font-style:italic; font-weight:600; display:inline-block; min-width:1ch;}
+.hero p.lede{margin:18px auto 0; font-size:1.05rem; max-width:46ch; color:#3a3f39;}
+.hero-actions{margin-top:28px; display:flex; gap:14px; flex-wrap:wrap; justify-content:center;}
+.btn-primary{
+  background:var(--chili); color:#fff; padding:14px 28px; border-radius:10px; font-weight:600;
+  font-size:1rem; transition:transform .15s ease;
+}
+.btn-primary:hover{transform:translateY(-2px);}
+.btn-ghost{
+  background:transparent; border:1.5px solid var(--green); color:var(--green);
+  padding:13px 26px; border-radius:10px; font-weight:600;
+}
+
+/* marquee strip */
+.marquee-wrap{border-top:1px solid var(--line); border-bottom:1px solid var(--line); background:var(--green); overflow:hidden; margin-top:52px;}
+.marquee{display:flex; gap:0; white-space:nowrap; animation:scroll 26s linear infinite; width:max-content;}
+.marquee span{
+  color:#F6E8CE; font-family:'Fraunces',serif; font-style:italic; font-size:1.05rem;
+  padding:14px 34px; border-right:1px solid rgba(255,255,255,.18);
+}
+@keyframes scroll{from{transform:translateX(0);} to{transform:translateX(-50%);}}
+@media (prefers-reduced-motion:reduce){.marquee{animation:none;}}
+
+/* ---------- MENU ---------- */
+.section{max-width:1180px; margin:0 auto; padding:64px 24px;}
+.section-head{display:flex; justify-content:space-between; align-items:flex-end; gap:24px; flex-wrap:wrap; margin-bottom:30px;}
+.section-head h2{font-size:2rem; font-weight:600;}
+.controls{display:flex; gap:10px; flex-wrap:wrap;}
+.search-box{
+  border:1.5px solid var(--line); background:#fff; border-radius:999px; padding:10px 18px;
+  font-size:.92rem; min-width:220px; outline:none;
+}
+.search-box:focus{border-color:var(--green);}
+.tabs{display:flex; gap:8px; flex-wrap:wrap; margin-bottom:34px;}
+.tab{
+  padding:9px 18px; border-radius:999px; background:#fff; border:1.5px solid var(--line);
+  font-weight:600; font-size:.88rem; color:#555;
+}
+.tab.active{background:var(--green); color:#fff; border-color:var(--green);}
+
+.grid{display:grid; grid-template-columns:repeat(3,1fr); gap:22px;}
+@media(max-width:900px){.grid{grid-template-columns:repeat(2,1fr);}}
+@media(max-width:600px){.grid{grid-template-columns:1fr;} .nav-wrap{padding:14px 16px;} .section{padding:44px 16px;} .tabs{overflow-x:auto; flex-wrap:nowrap; padding-bottom:6px; -webkit-overflow-scrolling:touch;} .tabs::-webkit-scrollbar{display:none;} .tab{flex-shrink:0;} .search-box{width:100%;}}
+
+.card{
+  background:var(--card); border-radius:var(--radius); overflow:hidden; border:1px solid var(--line);
+  transition:box-shadow .2s ease, transform .2s ease;
+}
+.card:hover{box-shadow:0 18px 34px -18px rgba(11,61,46,.28); transform:translateY(-3px);}
+.card .thumb{aspect-ratio:4/3; background:#eee2c7; position:relative; display:flex; align-items:center; justify-content:center; font-size:2.6rem; overflow:hidden;}
+.card .thumb img{position:absolute; inset:0; width:100%; height:100%; object-fit:cover; z-index:2;}
+.card .thumb .fallback{position:relative; z-index:1;}
+.add-cart-btn{
+  width:100%; margin-top:12px; background:var(--green); color:#fff; padding:10px; border-radius:8px;
+  font-weight:600; font-size:.86rem; transition:background .15s ease;
+}
+.add-cart-btn:hover{background:var(--green-light);}
+.add-cart-btn.added{background:var(--mango); color:var(--ink);}
+.card .cat-chip{
+  position:absolute; top:10px; left:10px; background:rgba(11,61,46,.85); color:#fff;
+  font-size:.68rem; font-weight:700; padding:4px 10px; border-radius:999px; letter-spacing:.02em;
+}
+.card .body{padding:16px 16px 18px;}
+.card h3{font-size:1.08rem; font-weight:600; margin-bottom:4px;}
+.card .row{display:flex; justify-content:space-between; align-items:center; margin-top:10px;}
+.price{color:var(--chili); font-weight:700; font-size:1.05rem;}
+.stars{color:var(--mango); font-size:.9rem; letter-spacing:1px;}
+.rating-num{color:#888; font-size:.78rem; margin-left:4px;}
+.empty-note{grid-column:1/-1; text-align:center; padding:50px 20px; color:#777; font-style:italic;}
+
+/* ---------- ABOUT STRIP ---------- */
+.about{background:var(--green); color:#F6E8CE; padding:70px 24px;}
+.about-inner{max-width:1180px; margin:0 auto; display:grid; grid-template-columns:1fr 1fr; gap:40px; align-items:center;}
+.about h2{font-size:1.9rem; font-weight:600; color:#fff;}
+.about p{margin-top:14px; color:#DCE7D9; max-width:52ch;}
+.stat-list{display:grid; grid-template-columns:1fr 1fr; gap:24px;}
+.stat b{font-family:'Fraunces',serif; font-size:2.1rem; display:block; color:var(--mango);}
+.stat span{font-size:.85rem; color:#CFE0CA;}
+@media(max-width:800px){.about-inner{grid-template-columns:1fr;}}
+
+/* ---------- FOOTER ---------- */
+footer{padding:46px 24px 30px; border-top:1px solid var(--line);}
+.footer-inner{max-width:1180px; margin:0 auto; display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:14px;}
+.dev-credit{font-size:.85rem; color:#666;}
+.dev-credit a{color:var(--green); font-weight:600; text-decoration:none; border-bottom:1px solid var(--mango);}
+.dev-credit a:hover{color:var(--chili);}
+
+/* ---------- CART BAR ---------- */
+body{padding-bottom:0; transition:padding-bottom .2s ease;}
+body.has-cart{padding-bottom:76px;}
+.cart-bar{
+  position:fixed; left:0; right:0; bottom:0; z-index:60; background:var(--green); color:#fff;
+  padding:14px 20px; display:none; align-items:center; justify-content:space-between; gap:16px;
+  box-shadow:0 -8px 24px rgba(0,0,0,.15);
+}
+.cart-bar.show{display:flex;}
+.cart-bar .info{font-size:.92rem;}
+.cart-bar .info b{color:var(--mango); font-family:'Fraunces',serif;}
+.cart-bar button{background:var(--chili); color:#fff; padding:11px 22px; border-radius:8px; font-weight:600; font-size:.9rem;}
+@media(max-width:480px){.cart-bar{padding:12px 14px;} .cart-bar .info{font-size:.82rem;}}
+
+/* ---------- OVERLAY / MODALS (shared) ---------- */
+.overlay{
+  position:fixed; inset:0; background:rgba(15,20,15,.55); z-index:100;
+  display:none; align-items:center; justify-content:center; padding:16px;
+}
+.overlay.show{display:flex;}
+.modal{
+  background:#fff; border-radius:16px; width:100%; max-width:480px; max-height:88vh; overflow-y:auto;
+  padding:26px 24px; position:relative;
+}
+.modal-close{position:absolute; top:14px; right:16px; font-size:1.3rem; background:none; color:#888;}
+.modal h3{font-size:1.3rem; margin-bottom:4px;}
+.modal p.sub{color:#777; font-size:.88rem; margin-bottom:18px;}
+
+/* cart items */
+.cart-item{display:flex; align-items:center; gap:12px; padding:10px 0; border-bottom:1px solid var(--line); font-size:.88rem;}
+.cart-item img{width:44px; height:44px; border-radius:8px; object-fit:cover; background:#eee2c7;}
+.cart-item .grow{flex:1;}
+.qty-ctrl{display:flex; align-items:center; gap:8px;}
+.qty-ctrl button{width:24px; height:24px; border-radius:6px; background:var(--bg); border:1px solid var(--line); font-weight:700;}
+.remove-item{color:var(--chili); font-size:.75rem; font-weight:700; background:none; margin-left:8px;}
+.cart-total-row{display:flex; justify-content:space-between; padding:14px 0 4px; font-weight:700; font-size:1rem;}
+.checkout-fields{margin-top:16px; border-top:1px solid var(--line); padding-top:16px;}
+.field{margin-bottom:12px;}
+.field label{display:block; font-size:.82rem; font-weight:600; margin-bottom:5px; color:#444;}
+.field input, .field textarea{width:100%; padding:10px 12px; border:1.5px solid var(--line); border-radius:8px; font-size:.92rem; font-family:inherit; resize:vertical;}
+.place-order-btn{width:100%; background:var(--chili); color:#fff; padding:13px; border-radius:10px; font-weight:600; margin-top:6px;}
+.checkout-note{font-size:.75rem; color:#999; margin-top:8px; text-align:center;}
+
+/* ---------- DELIVERY OVERLAY ---------- */
+.delivery-modal{max-width:380px; text-align:center; padding-top:32px;}
+.road{position:relative; height:54px; margin:26px 4px 14px; border-bottom:3px dashed var(--line);}
+.scooter{position:absolute; bottom:-2px; left:0; font-size:2.1rem; animation:ride 4.8s ease-in-out forwards;}
+.house-icon{position:absolute; right:-2px; bottom:-8px; font-size:1.6rem;}
+@keyframes ride{
+  0%{left:0; transform:scaleX(1);}
+  48%{left:calc(100% - 96px); transform:scaleX(1);}
+  50%{transform:scaleX(1);}
+  100%{left:calc(100% - 40px); transform:scaleX(1);}
+}
+.delivery-status{font-weight:600; font-size:1.02rem; min-height:1.4em; color:var(--green);}
+.delivery-sub{color:#888; font-size:.85rem; margin-top:6px;}
+.success-check{font-size:3rem; margin-bottom:8px;}
+.order-summary{background:var(--bg); border-radius:10px; padding:14px; margin-top:16px; text-align:left; font-size:.85rem; color:#444;}
+.order-summary div{margin-bottom:4px;}
+.done-btn{width:100%; margin-top:18px; background:var(--green); color:#fff; padding:12px; border-radius:10px; font-weight:600;}
+</style>
+</head>
+<body>
+
+<header>
+  <div class="nav-wrap">
+    <div class="brand">
+      <div class="mark">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M9 3.5c-1.2 1.1-1.2 2.3 0 3.4"/>
+          <path d="M12 2.5c-1.2 1.1-1.2 2.3 0 3.4"/>
+          <path d="M15 3.5c-1.2 1.1-1.2 2.3 0 3.4"/>
+          <path d="M3 11h18"/>
+          <path d="M4 11a8 8 0 0 0 16 0"/>
+          <path d="M6 19h12" stroke-width="1.4" opacity=".6"/>
+        </svg>
+      </div>
+      <div>Food Never Come<small>BANGLADESH</small></div>
+    </div>
+    <nav class="links">
+      <a href="#menu">Menu</a>
+      <a href="#about">About</a>
+    </nav>
+  </div>
+</header>
+
+<section class="hero">
+  <div class="eyebrow-note">Dhaka's late-night cravings, solved</div>
+  <h1>Food that never says <span class="rotator" id="rotator">not tonight</span></h1>
+  <p class="lede">From smoky kacchi to street-side fuchka, order the dishes Bangladesh actually craves — cooked fresh, rated by real regulars, delivered while it's still hot.</p>
+  <div class="hero-actions">
+    <a href="#menu" class="btn-primary">Browse the menu</a>
+    <a href="#about" class="btn-ghost">Why us</a>
+  </div>
+</section>
+
+<div class="marquee-wrap">
+  <div class="marquee" id="marquee"></div>
+</div>
+
+<section class="section" id="menu">
+  <div class="section-head">
+    <h2>This week's menu</h2>
+    <div class="controls">
+      <input type="text" class="search-box" id="searchBox" placeholder="Search a dish…">
+    </div>
+  </div>
+  <div class="tabs" id="tabs"></div>
+  <div class="grid" id="menuGrid"></div>
+</section>
+
+<section class="about" id="about">
+  <div class="about-inner">
+    <div>
+      <h2>Built for how Bangladesh actually eats</h2>
+      <p>No stock photos, no fake five stars. Every dish on Food Never Come is added and rated by the people who run the kitchen — so what you see is what lands on your table.</p>
+    </div>
+    <div class="stat-list">
+      <div class="stat"><b>120+</b><span>Dishes listed</span></div>
+      <div class="stat"><b>4.7★</b><span>Average rating</span></div>
+      <div class="stat"><b>18</b><span>Districts covered</span></div>
+      <div class="stat"><b>24/7</b><span>Kitchen hours</span></div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="footer-inner">
+    <div class="dev-credit">Developed by <a href="https://mdabdullahfahim.github.io" target="_blank" rel="noopener">MD. Abdullah Fahim</a></div>
+    <div class="dev-credit">© 2026 Food Never Come Bangladesh</div>
+  </div>
+</footer>
+
+<div class="cart-bar" id="cartBar">
+  <div class="info"><b id="cartCount">0</b> items · ৳<span id="cartTotal">0</span></div>
+  <button id="viewCartBtn">View cart & order</button>
+</div>
+
+<div class="overlay" id="cartOverlay">
+  <div class="modal">
+    <button class="modal-close" data-close>×</button>
+    <h3>Your order</h3>
+    <p class="sub">Review your items, then add a delivery address.</p>
+    <div id="cartItemsList"></div>
+    <div class="cart-total-row"><span>Total</span><span>৳<span id="modalTotal">0</span></span></div>
+    <div class="checkout-fields">
+      <div class="field"><label>Full name</label><input id="ord-name" placeholder="e.g. Rahim Uddin"></div>
+      <div class="field"><label>Phone number</label><input id="ord-phone" placeholder="01XXXXXXXXX"></div>
+      <div class="field"><label>Delivery address</label><textarea id="ord-address" rows="2" placeholder="House, road, area, district"></textarea></div>
+    </div>
+    <button class="place-order-btn" id="placeOrderBtn">Place order</button>
+    <div class="checkout-note">Demo checkout — no real order is sent or charged.</div>
+  </div>
+</div>
+
+<div class="overlay" id="deliveryOverlay">
+  <div class="modal delivery-modal" id="deliveryContent"></div>
+</div>
+
+<script type="module">
+import { initializeApp } from "https://www.gstatic.com/firebasejs/10.13.0/firebase-app.js";
+import { getFirestore, collection, onSnapshot, query, orderBy } from "https://www.gstatic.com/firebasejs/10.13.0/firebase-firestore.js";
+
+const firebaseConfig = {
+  apiKey: "AIzaSyDDRp9-MIsi975GwYjT245gpLEOARhcXHk",
+  authDomain: "food-never-come-bd.firebaseapp.com",
+  projectId: "food-never-come-bd",
+  storageBucket: "food-never-come-bd.firebasestorage.app",
+  messagingSenderId: "291923553931",
+  appId: "1:291923553931:web:944af85db8959e60b22e8e"
+};
+const app = initializeApp(firebaseConfig);
+const db = getFirestore(app);
+
+const CATS = ["All","Biryani","Fast Food","Street Food","Drinks","Dessert","Combo"];
+const EMOJI = {Biryani:"🍛","Fast Food":"🍔","Street Food":"🥟",Drinks:"🥤",Dessert:"🍮",Combo:"🍱"};
+
+const FALLBACK = [
+  {title:"Kacchi Biryani", category:"Biryani", price:420, rating:4.8, image:""},
+  {title:"Beef Tehari", category:"Biryani", price:280, rating:4.6, image:""},
+  {title:"Chicken Fuchka Combo", category:"Street Food", price:120, rating:4.5, image:""},
+  {title:"Cheesy Zinger Burger", category:"Fast Food", price:250, rating:4.4, image:""},
+  {title:"Mango Lassi", category:"Drinks", price:90, rating:4.7, image:""},
+  {title:"Chomchom Box", category:"Dessert", price:150, rating:4.9, image:""}
+];
+
+let allItems = [];
+let activeCat = "All";
+
+/* rotator */
+const words = ["not tonight","not this fast","far away","a hassle"];
+let wi = 0;
+setInterval(()=>{ wi=(wi+1)%words.length; document.getElementById('rotator').textContent = words[wi]; }, 2200);
+
+/* marquee */
+const dishNames = ["Kacchi Biryani","Fuchka","Tehari","Chotpoti","Mishti Doi","Beef Kala Bhuna","Zinger Burger","Mango Lassi","Chomchom","Haleem"];
+document.getElementById('marquee').innerHTML = [...dishNames, ...dishNames].map(d=>`<span>${d}</span>`).join("");
+
+/* tabs */
+const tabsEl = document.getElementById('tabs');
+tabsEl.innerHTML = CATS.map(c=>`<button class="tab ${c==='All'?'active':''}" data-cat="${c}">${c}</button>`).join("");
+tabsEl.addEventListener('click', e=>{
+  const btn = e.target.closest('.tab'); if(!btn) return;
+  activeCat = btn.dataset.cat;
+  [...tabsEl.children].forEach(t=>t.classList.toggle('active', t===btn));
+  renderMenu();
+});
+document.getElementById('searchBox').addEventListener('input', renderMenu);
+
+function stars(r){
+  const full = Math.round(r);
+  return "★".repeat(full) + "☆".repeat(5-full);
+}
+function esc(s){
+  return String(s ?? "").replace(/[&<>"']/g, m => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[m]));
+}
+
+function renderMenu(){
+  const term = document.getElementById('searchBox').value.trim().toLowerCase();
+  const grid = document.getElementById('menuGrid');
+  const list = allItems.filter(i=>{
+    const catOk = activeCat==="All" || i.category===activeCat;
+    const searchOk = !term || i.title.toLowerCase().includes(term);
+    return catOk && searchOk;
+  });
+  if(list.length===0){ grid.innerHTML = `<div class="empty-note">No dishes found here yet.</div>`; return; }
+  grid.innerHTML = list.map(i=>`
+    <div class="card">
+      <div class="thumb">
+        ${i.image ? `<img src="${esc(i.image)}" alt="${esc(i.title)}" loading="lazy" onerror="this.remove();">` : ''}
+        <span class="fallback">${EMOJI[i.category]||"🍽️"}</span>
+        <span class="cat-chip">${esc(i.category)}</span>
+      </div>
+      <div class="body">
+        <h3>${esc(i.title)}</h3>
+        <div class="row">
+          <span class="stars">${stars(i.rating)}<span class="rating-num">${(+i.rating).toFixed(1)}</span></span>
+        </div>
+        <div class="row">
+          <span class="price">৳${i.price}</span>
+        </div>
+        <button class="add-cart-btn" data-id="${i.id || esc(i.title)}" data-title="${esc(i.title)}" data-price="${i.price}" data-image="${esc(i.image||'')}">Add to cart</button>
+      </div>
+    </div>
+  `).join("");
+
+  grid.querySelectorAll('.add-cart-btn').forEach(btn=>{
+    btn.addEventListener('click', ()=>{
+      addToCart({id:btn.dataset.id, title:btn.dataset.title, price:+btn.dataset.price, image:btn.dataset.image});
+      btn.textContent = "Added ✓";
+      btn.classList.add('added');
+      setTimeout(()=>{ btn.textContent = "Add to cart"; btn.classList.remove('added'); }, 900);
+    });
+  });
+}
+
+const menuCol = collection(db, "menu");
+onSnapshot(query(menuCol, orderBy("createdAt","desc")), snap=>{
+  allItems = snap.empty ? FALLBACK : snap.docs.map(d=>{
+    const v = d.data();
+    return {id:d.id, title:v.title, category:v.category, price:v.price, rating:v.rating, image:v.image};
+  });
+  renderMenu();
+}, ()=>{ allItems = FALLBACK; renderMenu(); });
+
+/* ---------- CART ---------- */
+let cart = [];
+const cartBar = document.getElementById('cartBar');
+const cartOverlay = document.getElementById('cartOverlay');
+const deliveryOverlay = document.getElementById('deliveryOverlay');
+
+function addToCart(item){
+  const found = cart.find(c=>c.id===item.id);
+  if(found) found.qty += 1; else cart.push({...item, qty:1});
+  renderCartBar();
+}
+function changeQty(id, delta){
+  const it = cart.find(c=>c.id===id); if(!it) return;
+  it.qty += delta;
+  if(it.qty<=0) cart = cart.filter(c=>c.id!==id);
+  renderCartBar(); renderCartModal();
+}
+function cartTotal(){ return cart.reduce((s,c)=>s+c.price*c.qty,0); }
+function cartCount(){ return cart.reduce((s,c)=>s+c.qty,0); }
+
+function renderCartBar(){
+  const has = cart.length>0;
+  cartBar.classList.toggle('show', has);
+  document.body.classList.toggle('has-cart', has);
+  document.getElementById('cartCount').textContent = cartCount();
+  document.getElementById('cartTotal').textContent = cartTotal();
+}
+function renderCartModal(){
+  const el = document.getElementById('cartItemsList');
+  if(cart.length===0){ el.innerHTML = `<p style="color:#888; font-size:.88rem;">Your cart is empty.</p>`; document.getElementById('modalTotal').textContent = 0; return; }
+  el.innerHTML = cart.map(c=>`
+    <div class="cart-item">
+      ${c.image ? `<img src="${esc(c.image)}" onerror="this.remove();">` : `<span style="font-size:1.4rem; width:44px; text-align:center;">🍽️</span>`}
+      <div class="grow">${esc(c.title)}<br><span style="color:#888">৳${c.price} each</span></div>
+      <div class="qty-ctrl">
+        <button data-act="dec" data-id="${esc(c.id)}">−</button>
+        <span>${c.qty}</span>
+        <button data-act="inc" data-id="${esc(c.id)}">+</button>
+      </div>
+      <button class="remove-item" data-act="rm" data-id="${esc(c.id)}">Remove</button>
+    </div>
+  `).join("");
+  document.getElementById('modalTotal').textContent = cartTotal();
+  el.querySelectorAll('button').forEach(b=>{
+    b.addEventListener('click', ()=>{
+      if(b.dataset.act==="inc") changeQty(b.dataset.id, 1);
+      if(b.dataset.act==="dec") changeQty(b.dataset.id, -1);
+      if(b.dataset.act==="rm"){ cart = cart.filter(c=>c.id!==b.dataset.id); renderCartBar(); renderCartModal(); }
+    });
+  });
+}
+
+document.getElementById('viewCartBtn').addEventListener('click', ()=>{ renderCartModal(); cartOverlay.classList.add('show'); });
+document.querySelectorAll('[data-close]').forEach(b=>b.addEventListener('click', ()=> cartOverlay.classList.remove('show')));
+cartOverlay.addEventListener('click', e=>{ if(e.target===cartOverlay) cartOverlay.classList.remove('show'); });
+
+document.getElementById('placeOrderBtn').addEventListener('click', ()=>{
+  const name = document.getElementById('ord-name').value.trim();
+  const address = document.getElementById('ord-address').value.trim();
+  if(cart.length===0){ alert("Your cart is empty."); return; }
+  if(!name || !address){ alert("Please add a name and delivery address."); return; }
+  const phone = document.getElementById('ord-phone').value.trim();
+  cartOverlay.classList.remove('show');
+  runDeliveryAnimation({name, phone, address, count: cartCount(), total: cartTotal()});
+});
+
+function runDeliveryAnimation(order){
+  const content = document.getElementById('deliveryContent');
+  content.innerHTML = `
+    <div class="road"><span class="scooter">🛵</span><span class="house-icon">🏠</span></div>
+    <div class="delivery-status" id="devStatus">Confirming your order…</div>
+    <div class="delivery-sub">Sit tight, help is on the way.</div>
+  `;
+  deliveryOverlay.classList.add('show');
+  const stages = ["Confirming your order…","Rider picking up your food…","On the way to you…","Delivered! 🎉"];
+  let step = 0;
+  const statusEl = () => document.getElementById('devStatus');
+  const timer = setInterval(()=>{
+    step++;
+    if(step < stages.length){ statusEl().textContent = stages[step]; }
+    if(step === stages.length-1){
+      clearInterval(timer);
+      setTimeout(()=>{
+        content.innerHTML = `
+          <div class="success-check">✅</div>
+          <div class="delivery-status">Order delivered!</div>
+          <div class="order-summary">
+            <div><strong>${esc(order.name)}</strong></div>
+            ${order.phone ? `<div>${esc(order.phone)}</div>` : ''}
+            <div>${esc(order.address)}</div>
+            <div style="margin-top:8px;">${order.count} item(s) · ৳${order.total}</div>
+          </div>
+          <button class="done-btn" id="doneBtn">Done</button>
+        `;
+        document.getElementById('doneBtn').addEventListener('click', ()=>{
+          deliveryOverlay.classList.remove('show');
+          cart = []; renderCartBar();
+          document.getElementById('ord-name').value = "";
+          document.getElementById('ord-phone').value = "";
+          document.getElementById('ord-address').value = "";
+        });
+      }, 500);
+    }
+  }, 1150);
+}
+</script>
+</body>
+</html>

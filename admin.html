@@ -1,0 +1,311 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Admin · Food Never Come Bangladesh</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,wght@0,600;0,700&family=Work+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#FBF6EC; --ink:#17201A; --green:#0B3D2E; --green-light:#1F6F54;
+  --mango:#E8A33D; --chili:#C23616; --card:#FFFFFF; --line:#E4DCC8; --radius:14px;
+}
+*{box-sizing:border-box; margin:0; padding:0;}
+body{background:var(--bg); color:var(--ink); font-family:'Work Sans',sans-serif; line-height:1.5;}
+h1,h2,h3,.serif{font-family:'Fraunces',serif;}
+img{max-width:100%; display:block;}
+a{color:inherit;}
+button{font-family:inherit; cursor:pointer; border:none;}
+
+header{border-bottom:1px solid var(--line); background:rgba(251,246,236,.92);}
+.nav-wrap{max-width:960px; margin:0 auto; padding:16px 24px; display:flex; align-items:center; justify-content:space-between; gap:16px;}
+.brand{display:flex; align-items:center; gap:10px; font-weight:700; font-size:1.1rem;}
+.brand .mark{width:36px; height:36px; border-radius:10px; background:var(--green); display:flex; align-items:center; justify-content:center; color:var(--mango); flex-shrink:0;}
+.brand .mark svg{width:20px; height:20px;}
+.brand small{display:block; font-weight:500; font-size:.65rem; color:var(--green-light);}
+.back-link{font-size:.88rem; font-weight:600; color:var(--green); text-decoration:none;}
+
+.wrap{max-width:960px; margin:0 auto; padding:50px 24px 80px;}
+
+/* login screen */
+.login-screen{max-width:420px; margin:60px auto; text-align:center; background:#fff; border:1px solid var(--line); border-radius:16px; padding:40px 32px;}
+.login-screen h2{font-size:1.5rem; margin-bottom:8px;}
+.login-screen p{color:#777; font-size:.92rem; margin-bottom:26px;}
+.google-btn{
+  width:100%; display:flex; align-items:center; justify-content:center; gap:10px;
+  border:1.5px solid var(--line); border-radius:10px; padding:12px; font-weight:600; background:#fff;
+}
+.google-btn:hover{border-color:var(--green);}
+.status-msg{margin-top:16px; font-size:.85rem; color:var(--chili); min-height:1em;}
+
+/* admin dashboard */
+.who-bar{display:flex; align-items:center; gap:12px; background:#fff; border:1px solid var(--line); padding:12px 16px; border-radius:12px; margin-bottom:34px;}
+.who-bar img{width:36px; height:36px; border-radius:50%;}
+.who-bar .grow{flex:1;}
+.who-bar strong{font-size:.92rem;}
+.who-bar small{color:#777;}
+.logout-link{font-size:.82rem; color:var(--chili); font-weight:600; text-decoration:none;}
+
+.panel{background:#fff; border:1px solid var(--line); border-radius:16px; padding:28px; margin-bottom:28px;}
+.panel h3{font-size:1.2rem; margin-bottom:4px;}
+.panel p.sub{color:#777; font-size:.88rem; margin-bottom:22px;}
+.field{margin-bottom:14px;}
+.field label{display:block; font-size:.82rem; font-weight:600; margin-bottom:5px; color:#444;}
+.field input, .field select{width:100%; padding:11px 12px; border:1.5px solid var(--line); border-radius:8px; font-size:.93rem; font-family:inherit;}
+.form-grid{display:grid; grid-template-columns:1fr 1fr; gap:14px;}
+@media(max-width:560px){.form-grid{grid-template-columns:1fr;}}
+.img-toggle{display:flex; gap:8px; margin-bottom:8px;}
+.toggle-btn{
+  flex:1; padding:8px; border-radius:8px; border:1.5px solid var(--line); background:var(--bg);
+  font-weight:600; font-size:.82rem; color:#555;
+}
+.toggle-btn.active{background:var(--green); border-color:var(--green); color:#fff;}
+.panel{box-shadow:0 10px 30px -18px rgba(11,61,46,.18);}
+.btn-primary{background:var(--chili); color:#fff; padding:13px 26px; border-radius:10px; font-weight:600; font-size:.95rem; width:100%; margin-top:6px;}
+.btn-primary:hover{opacity:.92;}
+
+.item-row{display:flex; align-items:center; gap:14px; padding:12px 0; border-bottom:1px solid var(--line); font-size:.9rem;}
+.item-row:last-child{border-bottom:none;}
+.item-row img{width:48px; height:48px; object-fit:cover; border-radius:8px; background:#eee2c7;}
+.item-row .grow{flex:1;}
+.item-row .meta{color:#888; font-size:.8rem;}
+.del-btn{color:var(--chili); font-size:.82rem; font-weight:700; background:none;}
+.empty-note{color:#888; font-size:.88rem; font-style:italic;}
+.denied{max-width:420px; margin:60px auto; text-align:center; background:#fff; border:1px solid var(--line); border-radius:16px; padding:40px 32px;}
+.denied h2{color:var(--chili); font-size:1.3rem; margin-bottom:8px;}
+</style>
+</head>
+<body>
+
+<header>
+  <div class="nav-wrap">
+    <div class="brand">
+      <div class="mark">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M9 3.5c-1.2 1.1-1.2 2.3 0 3.4"/>
+          <path d="M12 2.5c-1.2 1.1-1.2 2.3 0 3.4"/>
+          <path d="M15 3.5c-1.2 1.1-1.2 2.3 0 3.4"/>
+          <path d="M3 11h18"/>
+          <path d="M4 11a8 8 0 0 0 16 0"/>
+          <path d="M6 19h12" stroke-width="1.4" opacity=".6"/>
+        </svg>
+      </div>
+      <div>Food Never Come<small>ADMIN</small></div>
+    </div>
+    <a class="back-link" href="index.html">← Back to site</a>
+  </div>
+</header>
+
+<div class="wrap">
+
+  <!-- LOGIN -->
+  <div class="login-screen" id="loginScreen">
+    <h2>Admin sign in</h2>
+    <p>Only approved Food Never Come admins can access this page.</p>
+    <button class="google-btn" id="googleSignInBtn">
+      <svg width="18" height="18" viewBox="0 0 18 18"><path fill="#4285F4" d="M17.64 9.2c0-.64-.06-1.25-.16-1.84H9v3.48h4.84a4.14 4.14 0 0 1-1.8 2.72v2.26h2.9c1.7-1.56 2.7-3.87 2.7-6.62z"/><path fill="#34A853" d="M9 18c2.43 0 4.47-.8 5.96-2.18l-2.9-2.26c-.8.54-1.84.86-3.06.86-2.35 0-4.34-1.59-5.05-3.72H.98v2.33A9 9 0 0 0 9 18z"/><path fill="#FBBC05" d="M3.95 10.7A5.4 5.4 0 0 1 3.67 9c0-.59.1-1.17.28-1.7V4.97H.98A9 9 0 0 0 0 9c0 1.45.35 2.83.98 4.03l2.97-2.33z"/><path fill="#EA4335" d="M9 3.58c1.32 0 2.51.45 3.44 1.35l2.58-2.58C13.46.9 11.43 0 9 0A9 9 0 0 0 .98 4.97L3.95 7.3C4.66 5.17 6.65 3.58 9 3.58z"/></svg>
+      Continue with Google
+    </button>
+    <div class="status-msg" id="loginStatus"></div>
+  </div>
+
+  <!-- ACCESS DENIED -->
+  <div class="denied" id="deniedScreen" style="display:none;">
+    <h2>Access denied</h2>
+    <p>This Google account isn't an approved admin for Food Never Come Bangladesh.</p>
+    <br>
+    <button class="google-btn" id="tryAgainBtn">Try a different account</button>
+  </div>
+
+  <!-- DASHBOARD -->
+  <div id="dashboard" style="display:none;">
+    <div class="who-bar">
+      <img id="adminPhoto" src="" alt="">
+      <div class="grow"><strong id="adminName"></strong><br><small id="adminEmail"></small></div>
+      <a class="logout-link" id="logoutBtn" href="#">Sign out</a>
+    </div>
+
+    <div class="panel">
+      <h3>Add a dish</h3>
+      <p class="sub">Image uploads to imgbb; the dish is saved to Firestore instantly and appears live on the public site.</p>
+      <div class="field"><label>Dish title</label><input id="f-title" placeholder="e.g. Kacchi Biryani"></div>
+      <div class="form-grid">
+        <div class="field"><label>Category</label>
+          <select id="f-cat">
+            <option>Biryani</option><option>Fast Food</option><option>Street Food</option>
+            <option>Drinks</option><option>Dessert</option><option>Combo</option>
+          </select>
+        </div>
+        <div class="field"><label>Price (৳)</label><input id="f-price" type="number" placeholder="450"></div>
+      </div>
+      <div class="field"><label>Rating (1–5)</label><input id="f-rating" type="number" step="0.1" min="1" max="5" placeholder="4.5"></div>
+      <div class="field">
+        <label>Dish image</label>
+        <div class="img-toggle">
+          <button type="button" class="toggle-btn active" data-mode="link">Paste image link</button>
+          <button type="button" class="toggle-btn" data-mode="upload">Upload file</button>
+        </div>
+        <input id="f-image-url" type="url" placeholder="https://i.ibb.co/xxxxxxx/dish.jpg">
+        <input id="f-image-file" type="file" accept="image/*" style="display:none;">
+      </div>
+      <button class="btn-primary" id="addItemBtn">Upload & add dish</button>
+      <div class="status-msg" id="adminStatus"></div>
+    </div>
+
+    <div class="panel">
+      <h3>Current menu</h3>
+      <p class="sub">Click delete to remove a dish from the live site.</p>
+      <div id="adminList"></div>
+    </div>
+  </div>
+
+</div>
+
+<script type="module">
+import { initializeApp } from "https://www.gstatic.com/firebasejs/10.13.0/firebase-app.js";
+import {
+  getAuth, GoogleAuthProvider, signInWithPopup, signOut, onAuthStateChanged
+} from "https://www.gstatic.com/firebasejs/10.13.0/firebase-auth.js";
+import {
+  getFirestore, collection, addDoc, deleteDoc, doc, onSnapshot, serverTimestamp, query, orderBy
+} from "https://www.gstatic.com/firebasejs/10.13.0/firebase-firestore.js";
+
+const firebaseConfig = {
+  apiKey: "AIzaSyDDRp9-MIsi975GwYjT245gpLEOARhcXHk",
+  authDomain: "food-never-come-bd.firebaseapp.com",
+  projectId: "food-never-come-bd",
+  storageBucket: "food-never-come-bd.firebasestorage.app",
+  messagingSenderId: "291923553931",
+  appId: "1:291923553931:web:944af85db8959e60b22e8e"
+};
+const app = initializeApp(firebaseConfig);
+const auth = getAuth(app);
+const db = getFirestore(app);
+const provider = new GoogleAuthProvider();
+
+const IMGBB_KEY = "3aa0cf0837f3ea6c49d67351d09d80a5";
+const ADMIN_EMAILS = ["abdullahfahim139549@gmail.com", "mdabdullahfahim.bd@gmail.com"];
+const EMOJI = {Biryani:"🍛","Fast Food":"🍔","Street Food":"🥟",Drinks:"🥤",Dessert:"🍮",Combo:"🍱"};
+
+let currentUser = null;
+let menuItems = [];
+
+const loginScreen = document.getElementById('loginScreen');
+const deniedScreen = document.getElementById('deniedScreen');
+const dashboard = document.getElementById('dashboard');
+
+function showOnly(el){
+  [loginScreen, deniedScreen, dashboard].forEach(s=>s.style.display = (s===el ? '' : 'none'));
+}
+
+async function doSignIn(){
+  document.getElementById('loginStatus').textContent = "";
+  try{ await signInWithPopup(auth, provider); }
+  catch(err){ document.getElementById('loginStatus').textContent = "Sign-in failed. Try again."; }
+}
+document.getElementById('googleSignInBtn').addEventListener('click', doSignIn);
+document.getElementById('tryAgainBtn').addEventListener('click', async ()=>{ await signOut(auth); doSignIn(); });
+document.getElementById('logoutBtn').addEventListener('click', async (e)=>{ e.preventDefault(); await signOut(auth); });
+
+onAuthStateChanged(auth, user=>{
+  if(!user){ currentUser = null; showOnly(loginScreen); return; }
+  if(!ADMIN_EMAILS.includes(user.email)){
+    currentUser = null; showOnly(deniedScreen); return;
+  }
+  currentUser = user;
+  document.getElementById('adminPhoto').src = user.photoURL || "";
+  document.getElementById('adminName').textContent = user.displayName || "Admin";
+  document.getElementById('adminEmail').textContent = user.email;
+  showOnly(dashboard);
+});
+
+const menuCol = collection(db, "menu");
+onSnapshot(query(menuCol, orderBy("createdAt","desc")), snap=>{
+  menuItems = snap.docs.map(d=>{
+    const v = d.data();
+    return {id:d.id, title:v.title, category:v.category, price:v.price, rating:v.rating, image:v.image};
+  });
+  renderAdminList();
+});
+
+function esc(s){
+  return String(s ?? "").replace(/[&<>"']/g, m => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[m]));
+}
+function renderAdminList(){
+  const el = document.getElementById('adminList');
+  if(menuItems.length===0){ el.innerHTML = `<p class="empty-note">No dishes added yet.</p>`; return; }
+  el.innerHTML = menuItems.map(i=>`
+    <div class="item-row">
+      ${i.image ? `<img src="${esc(i.image)}" onerror="this.remove();">` : `<span style="font-size:1.5rem; width:48px; text-align:center;">${EMOJI[i.category]||"🍽️"}</span>`}
+      <div class="grow"><strong>${esc(i.title)}</strong><br><span class="meta">৳${i.price} · ${esc(i.category)} · ★${(+i.rating).toFixed(1)}</span></div>
+      <button class="del-btn" data-id="${esc(i.id)}">Delete</button>
+    </div>
+  `).join("");
+  el.querySelectorAll('.del-btn').forEach(b=>{
+    b.addEventListener('click', async ()=>{
+      if(!confirm("Delete this dish?")) return;
+      await deleteDoc(doc(db, "menu", b.dataset.id));
+    });
+  });
+}
+
+let imageMode = "link";
+document.querySelectorAll('.toggle-btn').forEach(btn=>{
+  btn.addEventListener('click', ()=>{
+    imageMode = btn.dataset.mode;
+    document.querySelectorAll('.toggle-btn').forEach(b=>b.classList.toggle('active', b===btn));
+    document.getElementById('f-image-url').style.display = imageMode==="link" ? "" : "none";
+    document.getElementById('f-image-file').style.display = imageMode==="upload" ? "" : "none";
+  });
+});
+
+document.getElementById('addItemBtn').addEventListener('click', async ()=>{
+  const statusEl = document.getElementById('adminStatus');
+  const title = document.getElementById('f-title').value.trim();
+  const category = document.getElementById('f-cat').value;
+  const price = parseFloat(document.getElementById('f-price').value);
+  const rating = parseFloat(document.getElementById('f-rating').value);
+  const pastedUrl = document.getElementById('f-image-url').value.trim();
+  const fileInput = document.getElementById('f-image-file');
+  const file = fileInput.files[0];
+
+  if(!title || !price || !rating){ statusEl.style.color="var(--chili)"; statusEl.textContent = "Fill in title, price and rating."; return; }
+  if(!currentUser){ statusEl.style.color="var(--chili)"; statusEl.textContent = "Please sign in again."; return; }
+
+  statusEl.style.color = "#555";
+  statusEl.textContent = "Saving…";
+  try{
+    let imageUrl = "";
+    if(imageMode === "link" && pastedUrl){
+      imageUrl = pastedUrl;
+    } else if(imageMode === "upload" && file){
+      statusEl.textContent = "Uploading image…";
+      const fd = new FormData();
+      fd.append("image", file);
+      const up = await fetch(`https://api.imgbb.com/1/upload?key=${IMGBB_KEY}`, { method:"POST", body: fd });
+      const upData = await up.json();
+      if(!upData.success) throw new Error("imgbb upload failed");
+      imageUrl = upData.data.url;
+    }
+    statusEl.textContent = "Saving dish…";
+    await addDoc(menuCol, {
+      title, category, price, rating, image: imageUrl,
+      addedBy: currentUser.email, createdAt: serverTimestamp()
+    });
+    statusEl.style.color = "green";
+    statusEl.textContent = "Dish added!";
+    document.getElementById('f-title').value = "";
+    document.getElementById('f-price').value = "";
+    document.getElementById('f-rating').value = "";
+    document.getElementById('f-image-url').value = "";
+    fileInput.value = "";
+  }catch(err){
+    statusEl.style.color = "var(--chili)";
+    statusEl.textContent = "Something went wrong: " + err.message;
+  }
+});
+</script>
+</body>
+</html>
